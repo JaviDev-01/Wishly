@@ -10,6 +10,7 @@ import { Home, PlusSquare, List, User } from 'lucide-react';
 import { compressBirthdays, decompressBirthdays, encryptData, decryptData, sortBirthdays } from './utils';
 import { NotificationService } from './notifications';
 import { OtaService } from './ota';
+import { CapacitorUpdater } from '@capgo/capacitor-updater';
 
 const STORAGE_KEY_USER = 'cb_user';
 const STORAGE_KEY_USER_DOB = 'cb_user_dob'; // New key for user birthday
@@ -32,6 +33,14 @@ const App: React.FC = () => {
   // Load data and theme on mount
   useEffect(() => {
     const initApp = async () => {
+        try {
+            // CRITICAL: Notify native plugin that the bundle loaded successfully
+            // ensuring it doesn't rollback after 10s.
+            await CapacitorUpdater.notifyAppReady();
+        } catch (e) {
+            console.error("Error notifying app ready", e);
+        }
+
         await NotificationService.init();
         
         // Check for OTA updates
