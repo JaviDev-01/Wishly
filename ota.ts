@@ -9,7 +9,8 @@ export const OtaService = {
       // However, for this simple 'download' method, it generally just downloads. 
       // The robust way in the tutorial suggests download -> set.
       const result = await CapacitorUpdater.download({
-        url: 'https://github.com/JaviDev-01/Wishly/releases/latest/download/update.zip'
+          url: 'https://github.com/JaviDev-01/Wishly/releases/latest/download/update.zip',
+          version: ''
       });
 
       if (result.version) {
