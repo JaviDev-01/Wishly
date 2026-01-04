@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Birthday } from '../../types';
+import { Birthday, Category } from '../../types';
 import { NeoCard, NeoButton } from '../ui/NeoComponents';
 import { getDaysUntilBirthday, sortBirthdays, getZodiacData, shareBirthday } from '../../utils';
 import { Cake, Calendar, Frown, Megaphone, PartyPopper, Clock, Crown } from 'lucide-react';
@@ -19,7 +19,11 @@ interface HomeViewProps {
 }
 
 const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAddClick }) => {
-  const sorted = sortBirthdays(birthdays);
+  const [selectedCategory, setSelectedCategory] = React.useState<Category | 'Todos'>('Todos');
+  const CATEGORIES: (Category | 'Todos')[] = ['Todos', 'Familia', 'Amigos', 'Trabajo', 'Pareja', 'Otros'];
+
+  const filteredBirthdays = birthdays.filter(b => selectedCategory === 'Todos' || b.category === selectedCategory);
+  const sorted = sortBirthdays(filteredBirthdays);
   const nextBirthday = sorted[0];
   const daysUntilNext = nextBirthday ? getDaysUntilBirthday(nextBirthday.day, nextBirthday.month).days : -1;
   const isToday = daysUntilNext === 0;
@@ -113,6 +117,24 @@ const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAdd
               </div>
             )}
           </div>
+        </div>
+
+        {/* Category Filter Bar */}
+        <div className="flex gap-2 overflow-x-auto no-scrollbar py-2 -mt-4">
+            {CATEGORIES.map((cat) => (
+                <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`
+                        flex-shrink-0 px-3 py-1 text-[9px] font-black uppercase border-2 border-black dark:border-white transition-all
+                        ${selectedCategory === cat 
+                            ? 'bg-[#A3E635] text-black translate-y-[2px] shadow-none' 
+                            : 'bg-white dark:bg-black dark:text-white shadow-[2px_2px_0px_0px_#000] dark:shadow-[2px_2px_0px_0px_#fff] hover:-translate-y-[2px]'}
+                    `}
+                >
+                    {cat}
+                </button>
+            ))}
         </div>
 
         {/* User Birthday Special Card */}

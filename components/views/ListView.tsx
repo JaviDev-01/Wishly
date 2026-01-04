@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Birthday, MONTHS } from '../../types';
+import { Birthday, MONTHS, Category } from '../../types';
 import { Search, Trash2, ChevronDown, ChevronUp, Star, Gift, Timer, Zap, ExternalLink, Award } from 'lucide-react';
 import { getZodiacData, calculateAgeDetails, RANDOM_LOOT } from '../../utils';
 
@@ -131,8 +131,15 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [deletingIds, setDeletingIds] = useState<string[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | 'Todos'>('Todos');
 
-  const filtered = birthdays.filter(b => b.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const CATEGORIES: (Category | 'Todos')[] = ['Todos', 'Familia', 'Amigos', 'Trabajo', 'Pareja', 'Otros'];
+
+  const filtered = birthdays.filter(b => {
+    const matchesSearch = b.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'Todos' || b.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
   
   const groupedBirthdays = Array.from({ length: 12 }, (_, i) => {
     return {
@@ -179,6 +186,24 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+          
+          {/* Category Filter Horizontal Scroll */}
+          <div className="flex gap-2 overflow-x-auto no-scrollbar py-3 mt-2">
+              {CATEGORIES.map((cat) => (
+                  <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`
+                          flex-shrink-0 px-3 py-1 text-[9px] font-black uppercase border-2 border-black dark:border-white transition-all
+                          ${selectedCategory === cat 
+                              ? 'bg-[#A3E635] text-black translate-y-[2px] shadow-none' 
+                              : 'bg-white dark:bg-black dark:text-white shadow-[2px_2px_0px_0px_#000] dark:shadow-[2px_2px_0px_0px_#fff] hover:-translate-y-[2px]'}
+                      `}
+                  >
+                      {cat}
+                  </button>
+              ))}
+          </div>
         </div>
 
         <div className="space-y-6 mt-6">
@@ -222,6 +247,9 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
                                   <div>
                                       <h4 className="font-black text-xl uppercase leading-none dark:text-white flex items-center gap-2">
                                           {bday.name}
+                                          <span className="bg-black dark:bg-white text-white dark:text-black text-[8px] px-1.5 py-0.5 border border-black transform rotate-1">
+                                            {bday.category || 'Amigos'}
+                                          </span>
                                           {milestone && (
                                               <span className="bg-[#A3E635] text-black text-[9px] px-1 py-0.5 rounded-sm flex items-center gap-1 border border-black">
                                                   <Award size={8} /> {milestone}

@@ -1,3 +1,5 @@
+export type Category = 'Familia' | 'Amigos' | 'Trabajo' | 'Pareja' | 'Otros';
+
 export interface Birthday {
   id: string;
   name: string;
@@ -5,10 +7,20 @@ export interface Birthday {
   month: number; // 1-12
   year?: number;
   notes?: string;
-  giftIdea?: string; // New feature
+  giftIdea?: string;
+  category: Category;
 }
 
-export type Tab = 'home' | 'add' | 'list' | 'profile';
+export interface GiftIdea {
+  id: string;
+  name: string;
+  description: string;
+  link?: string;
+  recipient: string;
+  category: string;
+}
+
+export type Tab = 'home' | 'add' | 'list' | 'gifts' | 'profile';
 
 export const MONTHS = [
   "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",

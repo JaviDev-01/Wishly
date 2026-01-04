@@ -3,10 +3,11 @@ import Onboarding from './components/Onboarding';
 import HomeView from './components/views/HomeView';
 import AddView from './components/views/AddView';
 import ListView from './components/views/ListView';
+import GiftsView from './components/views/GiftsView';
 import ProfileView from './components/views/ProfileView';
 import { NeoNavItem } from './components/ui/NeoComponents';
-import { Birthday, Tab } from './types';
-import { Home, PlusSquare, List, User } from 'lucide-react';
+import { Birthday, Tab, GiftIdea } from './types';
+import { Home, PlusSquare, List, User, Gift } from 'lucide-react';
 import WhatIsNewModal from './components/ui/WhatIsNewModal';
 import { App as CapApp } from '@capacitor/app';
 import { compressBirthdays, decompressBirthdays, encryptData, decryptData, sortBirthdays } from './utils';
@@ -17,12 +18,14 @@ import { CapacitorUpdater } from '@capgo/capacitor-updater';
 const STORAGE_KEY_USER = 'cb_user';
 const STORAGE_KEY_USER_DOB = 'cb_user_dob'; // New key for user birthday
 const STORAGE_KEY_DATA = 'cb_data';
+const STORAGE_KEY_GIFTS = 'cb_gifts';
 const STORAGE_KEY_THEME = 'cb_theme';
 
 const App: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
   const [userDOB, setUserDOB] = useState<string | null>(null); // State for user DOB
   const [birthdays, setBirthdays] = useState<Birthday[]>([]);
+  const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
   
   // Performance: Memoize sorted birthdays to avoid re-sorting on every render
   const sortedBirthdays = React.useMemo(() => sortBirthdays(birthdays), [birthdays]);
@@ -56,6 +59,7 @@ const App: React.FC = () => {
         const storedUser = localStorage.getItem(STORAGE_KEY_USER);
         const storedUserDOB = localStorage.getItem(STORAGE_KEY_USER_DOB);
         const storedData = localStorage.getItem(STORAGE_KEY_DATA);
+        const storedGifts = localStorage.getItem(STORAGE_KEY_GIFTS);
         const storedTheme = localStorage.getItem(STORAGE_KEY_THEME);
 
         if (storedUser) setUserName(storedUser);
@@ -81,6 +85,14 @@ const App: React.FC = () => {
         }
         }
         
+        if (storedGifts) {
+            try {
+                setGiftIdeas(JSON.parse(storedGifts));
+            } catch (e) {
+                console.error("Error loading gifts", e);
+            }
+        }
+
         if (storedTheme === 'dark') {
             setIsDark(true);
         }
@@ -132,6 +144,13 @@ const App: React.FC = () => {
 
   }, [birthdays, loading]);
 
+  // Save gifts whenever they change
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem(STORAGE_KEY_GIFTS, JSON.stringify(giftIdeas));
+    }
+  }, [giftIdeas, loading]);
+
   const handleUserSet = (name: string, dob: string) => {
     setUserName(name);
     setUserDOB(dob);
@@ -150,6 +169,14 @@ const App: React.FC = () => {
       setBirthdays(prev => prev.filter(b => b.id !== id));
       // Cancel notification
       NotificationService.cancelBirthdayNotification(id);
+  };
+
+  const handleAddGift = (gift: GiftIdea) => {
+    setGiftIdeas(prev => [gift, ...prev]);
+  };
+
+  const handleDeleteGift = (id: string) => {
+    setGiftIdeas(prev => prev.filter(g => g.id !== id));
   };
 
   const handleLogout = () => {
@@ -208,6 +235,13 @@ const App: React.FC = () => {
               onDelete={handleDeleteBirthday} 
             />
           )}
+          {activeTab === 'gifts' && (
+            <GiftsView 
+              gifts={giftIdeas}
+              onAdd={handleAddGift}
+              onDelete={handleDeleteGift}
+            />
+          )}
           {activeTab === 'profile' && (
             <ProfileView 
               userName={userName} 
@@ -259,11 +293,16 @@ const App: React.FC = () => {
             />
             <NeoNavItem 
             active={activeTab === 'list'} 
-            onClick={() => setActiveTab('list')} 
-            icon={<List size={24} strokeWidth={2.5} />} 
-            label="List"
-            />
-            <NeoNavItem 
+            onClick={() => setActiveTab('list')}             icon={<List size={24} strokeWidth={2.5} />} 
+             label="List"
+             />
+             <NeoNavItem 
+             active={activeTab === 'gifts'} 
+             onClick={() => setActiveTab('gifts')} 
+             icon={<Gift size={24} strokeWidth={2.5} />} 
+             label="Gifts"
+             />
+             <NeoNavItem 
             active={activeTab === 'profile'} 
             onClick={() => setActiveTab('profile')} 
             icon={<User size={24} strokeWidth={2.5} />} 

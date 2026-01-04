@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Birthday } from '../../types';
+import { Birthday, Category } from '../../types';
 import { NeoButton, NeoInput } from '../ui/NeoComponents';
 import { Save, X, AlignLeft } from 'lucide-react';
 import { generateId } from '../../utils';
@@ -14,6 +14,9 @@ const AddView: React.FC<AddViewProps> = ({ onAdd, onCancel }) => {
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
   const [giftIdea, setGiftIdea] = useState('');
+  const [category, setCategory] = useState<Category>('Amigos');
+
+  const CATEGORIES: Category[] = ['Familia', 'Amigos', 'Trabajo', 'Pareja', 'Otros'];
 
   const handleDateChange = (val: string) => {
     let v = val.replace(/\D/g, '');
@@ -44,7 +47,8 @@ const AddView: React.FC<AddViewProps> = ({ onAdd, onCancel }) => {
       month: parseInt(month),
       year: parseInt(year),
       notes,
-      giftIdea
+      giftIdea,
+      category
     };
 
     onAdd(newBirthday);
@@ -105,6 +109,29 @@ const AddView: React.FC<AddViewProps> = ({ onAdd, onCancel }) => {
                     onChange={(e) => setGiftIdea(e.target.value)}
                     className="bg-white dark:bg-[#111]"
                 />
+
+                {/* Category Selector */}
+                <div className="w-full mb-6">
+                    <label className="block font-black mb-2 text-white text-xs uppercase tracking-widest bg-black dark:bg-black border-2 border-black dark:border-white w-fit px-3 py-1 shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#ffffff]">
+                        Sector de Red
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                        {CATEGORIES.map((cat) => (
+                            <button
+                                key={cat}
+                                type="button"
+                                onClick={() => setCategory(cat)}
+                                className={`px-3 py-2 text-[10px] font-black uppercase border-2 border-black dark:border-white transition-all ${
+                                    category === cat 
+                                    ? 'bg-[#A3E635] text-black translate-x-1 translate-y-1 shadow-none' 
+                                    : 'bg-white dark:bg-black dark:text-white shadow-[2px_2px_0px_0px_#000] dark:shadow-[2px_2px_0px_0px_#fff] hover:-translate-y-1'
+                                }`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                </div>
 
                 {/* Custom Text Area */}
                 <div className="w-full mb-8">
