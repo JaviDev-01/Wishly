@@ -52,7 +52,7 @@ const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAdd
           angle: 120,
           spread: 55,
           origin: { x: 1 },
-          colors: ['#7C3AED', '#A3E635', '#FFFFFF']
+          colors: ['#e70a49ff', '#A3E635', '#FFFFFF']
         });
 
         if (Date.now() < end) {
