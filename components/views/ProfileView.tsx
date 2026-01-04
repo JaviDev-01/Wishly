@@ -193,7 +193,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
             </NeoButton>
 
             <NeoButton type="button" onClick={handleClear} fullWidth variant="black" className="flex items-center justify-between text-red-500 border-red-500 dark:border-red-500 hover:bg-red-900/20">
-            <span>PURGAR SISTEMA</span>
+            <span>RESETEAR SISTEMA</span>
             <Trash size={20} />
             </NeoButton>
         </div>

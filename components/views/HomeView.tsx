@@ -101,7 +101,7 @@ const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAdd
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-xs font-black text-[#A3E635] dark:text-black uppercase tracking-widest bg-black dark:bg-[#A3E635] text-white w-fit px-2 py-1 transform rotate-1 border border-white dark:border-none shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
-                Operador_01
+                Operador_001
               </h2>
               <h1 className="text-5xl md:text-6xl font-black text-black dark:text-white leading-[0.85] uppercase tracking-tighter mt-3 break-words">
                 {isUserBirthdayToday ? "¡TU DÍA!" : userName}
