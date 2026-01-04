@@ -49,7 +49,7 @@ const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAdd
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ['#7C3AED', '#A3E635', '#FFFFFF']
+          colors: ['#6A4C93', '#FF7A5A', '#48CAE4']
         });
         window.confetti({
           particleCount: 5,
@@ -105,7 +105,7 @@ const HomeView: React.FC<HomeViewProps> = ({ userName, userDOB, birthdays, onAdd
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-xs font-black text-[#A3E635] dark:text-black uppercase tracking-widest bg-black dark:bg-[#A3E635] text-white w-fit px-2 py-1 transform rotate-1 border border-white dark:border-none shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]">
-                Operador_001
+                Wishly
               </h2>
               <h1 className="text-5xl md:text-6xl font-black text-black dark:text-white leading-[0.85] uppercase tracking-tighter mt-3 break-words">
                 {isUserBirthdayToday ? "¡TU DÍA!" : userName}

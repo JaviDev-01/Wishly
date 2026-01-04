@@ -50,31 +50,35 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
     setError('');
   };
 
+  const STEPS = [
+    { title: "Identificación", icon: <Sparkles size={32} /> },
+  ];
+
   return (
     // Container: Full screen white on mobile, gray patterned on desktop
     <div className="h-[100dvh] w-full bg-white md:bg-transparent flex flex-col items-center justify-center md:p-6 relative overflow-hidden">
       
       {/* Background Decor - Fixed positioning for immersion */}
       <div className="absolute top-[-20px] right-[-20px] w-40 h-40 md:w-64 md:h-64 border-4 border-black rounded-full opacity-10 pointer-events-none"></div>
-      <div className="absolute bottom-[-20px] left-[-20px] w-40 h-40 md:w-64 md:h-64 bg-[#7C3AED] rounded-full opacity-10 pointer-events-none"></div>
+      <div className="absolute bottom-[-20px] left-[-20px] w-40 h-40 md:w-64 md:h-64 bg-[#6A4C93] rounded-full opacity-10 pointer-events-none"></div>
 
       {/* Main Content Wrapper: Full size on mobile, Card on desktop */}
       <div className="w-full h-full md:h-auto md:max-w-md animate-pop relative z-10">
-        <div className="h-full md:h-auto flex flex-col justify-center border-0 md:border-[3px] border-black p-6 md:p-8 bg-white md:shadow-[12px_12px_0px_0px_#7C3AED]">
+        <div className="h-full md:h-auto flex flex-col justify-center border-0 md:border-[3px] border-black p-6 md:p-8 bg-white md:shadow-[12px_12px_0px_0px_#6A4C93]">
             
             {/* Inner Content - Centered */}
             <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
                 
                 <div className="flex justify-center mb-8">
-                    <div className="bg-black text-white px-3 py-1 text-xs font-black uppercase transform -rotate-2 border border-transparent shadow-[4px_4px_0px_0px_#A3E635]">
+                    <div className="bg-black text-white px-3 py-1 text-xs font-black uppercase transform -rotate-2 border border-transparent shadow-[4px_4px_0px_0px_#FF7A5A]">
                         System Boot v3.0
                     </div>
                 </div>
                 
-                <h1 className="text-7xl font-black text-center mb-2 uppercase leading-[0.8] tracking-tighter">
+                <h1 className="text-7xl font-black text-center mb-2 uppercase leading-[0.8] tracking-tighter text-black">
                 Wishly
                 </h1>
-                <p className="text-center font-bold mb-12 uppercase text-sm tracking-[0.4em] text-[#7C3AED]">
+                <p className="text-center font-bold mb-12 uppercase text-sm tracking-[0.4em] text-[#6A4C93]">
                 Electric Edition
                 </p>
 
@@ -107,12 +111,12 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
 
                     {error && (
                         <div className="w-full text-center py-2 animate-bounce">
-                            <span className="bg-[#7C3AED] text-white text-xs font-black px-3 py-1 uppercase transform rotate-1 inline-block shadow-[2px_2px_0px_0px_#000] border border-black">{error}</span>
+                            <span className="bg-[#FF7A5A] text-white text-xs font-black px-3 py-1 uppercase transform rotate-1 inline-block shadow-[2px_2px_0px_0px_#000] border border-black">{error}</span>
                         </div>
                     )}
 
                     <div className="pt-6">
-                        <NeoButton type="submit" variant="black" fullWidth className="py-5 text-xl flex items-center justify-center gap-3 group hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-all">
+                        <NeoButton type="submit" variant="black" fullWidth className="py-5 text-xl flex items-center justify-center gap-3 group hover:bg-[#6A4C93] hover:border-[#6A4C93] transition-all">
                         INICIAR SISTEMA <ArrowRight size={24} strokeWidth={3} className="group-hover:translate-x-2 transition-transform" />
                         </NeoButton>
                     </div>

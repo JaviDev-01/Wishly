@@ -9,10 +9,10 @@ interface PrivacyModalProps {
 const PrivacyModal: React.FC<PrivacyModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white dark:bg-[#111] border-4 border-black dark:border-white w-full max-w-sm shadow-[8px_8px_0px_0px_#7C3AED] overflow-hidden animate-pop">
+      <div className="bg-white dark:bg-[#111] border-4 border-black dark:border-white w-full max-w-sm shadow-[8px_8px_0px_0px_#6A4C93] overflow-hidden animate-pop">
         
         {/* Header */}
-        <div className="bg-[#A3E635] p-4 border-b-4 border-black flex justify-between items-center">
+        <div className="bg-[#FF7A5A] p-4 border-b-4 border-black flex justify-between items-center">
           <h2 className="text-xl font-black text-black uppercase tracking-tighter italic flex items-center gap-2">
             <ShieldCheck size={24} /> PRIVACIDAD
           </h2>
@@ -26,7 +26,7 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ onClose }) => {
           <div className="space-y-4">
             <div className="flex gap-4">
               <div className="bg-black dark:bg-white p-2 h-fit border-2 border-black">
-                <HardDrive className="text-[#A3E635] dark:text-black" size={20} />
+                <HardDrive className="text-[#48CAE4] dark:text-black" size={20} />
               </div>
               <div>
                 <p className="font-black text-xs uppercase dark:text-white">100% Local-First</p>

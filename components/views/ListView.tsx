@@ -49,7 +49,7 @@ const LiveAge: React.FC<{ day: number, month: number, year?: number }> = ({ day,
     if (!age) return null;
 
     return (
-        <div className="bg-black dark:bg-white dark:text-black text-[#A3E635] font-mono p-3 border-2 border-transparent dark:border-black rounded-sm text-center shadow-inner">
+        <div className="bg-black dark:bg-white dark:text-black text-[#6A4C93] font-mono p-3 border-2 border-transparent dark:border-black rounded-sm text-center shadow-inner">
             <div className="text-[10px] text-white dark:text-black uppercase tracking-widest mb-2 flex items-center justify-center gap-1">
                 <Timer size={12} /> Tiempo jugado
             </div>
@@ -108,7 +108,7 @@ const LootRoulette: React.FC = () => {
       </div>
       
       {loot ? (
-         <div className={`text-xl font-black uppercase mb-3 text-[#7C3AED] dark:text-[#A3E635] ${isSpinning ? 'blur-sm scale-90' : 'scale-100'}`}>
+         <div className={`text-xl font-black uppercase mb-3 text-[#6A4C93] dark:text-[#48CAE4] ${isSpinning ? 'blur-sm scale-90' : 'scale-100'}`}>
             {loot}
          </div>
       ) : (
@@ -119,7 +119,7 @@ const LootRoulette: React.FC = () => {
         onClick={handleSpin}
         disabled={isSpinning}
         type="button"
-        className={`bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase py-2 px-4 w-full hover:bg-[#7C3AED] dark:hover:bg-[#A3E635] transition-colors ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase py-2 px-4 w-full hover:bg-[#6A4C93] dark:hover:bg-[#48CAE4] transition-colors ${isSpinning ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         {isSpinning ? 'CALCULANDO...' : 'HACKEAR REGALO'}
       </button>
@@ -213,7 +213,7 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
             return (
               <div key={index} className="relative animate-pop" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="flex items-center gap-4 mb-3 sticky top-[140px] z-10 pointer-events-none">
-                  <span className="bg-black dark:bg-white text-white dark:text-black font-black px-3 py-1 text-sm uppercase transform -rotate-1 shadow-[3px_3px_0px_0px_#7C3AED]">
+                  <span className="bg-black dark:bg-white text-white dark:text-black font-black px-3 py-1 text-sm uppercase transform -rotate-1 shadow-[3px_3px_0px_0px_#6A4C93]">
                     {group.monthName}
                   </span>
                   <div className="h-[2px] bg-black dark:bg-white flex-1 opacity-20"></div>
@@ -232,16 +232,16 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
                           onClick={() => toggleExpand(bday.id)}
                           className={`
                               border-2 border-black dark:border-white bg-white dark:bg-[#111] transition-all cursor-pointer relative
-                              ${isExpanded ? 'shadow-[6px_6px_0px_0px_#7C3AED] -translate-y-1' : 'shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#333] hover:bg-gray-50 dark:hover:bg-gray-900'}
+                              ${isExpanded ? 'shadow-[6px_6px_0px_0px_#6A4C93] -translate-y-1' : 'shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#333] hover:bg-gray-50 dark:hover:bg-gray-900'}
                           `}
                         >
                           {/* Status bar */}
-                          {isExpanded && <div className="absolute top-0 left-0 w-full h-1 bg-[#7C3AED]"></div>}
+                          {isExpanded && <div className="absolute top-0 left-0 w-full h-1 bg-[#6A4C93]"></div>}
 
                           {/* Summary Line */}
                           <div className="flex justify-between items-center p-4">
                               <div className="flex items-center gap-4">
-                                  <div className="font-black text-3xl w-12 h-12 flex items-center justify-center border-2 border-black dark:border-white bg-[#7C3AED] text-white rounded-full">
+                                  <div className="font-black text-3xl w-12 h-12 flex items-center justify-center border-2 border-black dark:border-white bg-[#6A4C93] text-white rounded-full">
                                       {bday.day}
                                   </div>
                                   <div>
@@ -282,7 +282,7 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
                                           <div className="flex items-center justify-between">
                                               <p className="font-bold text-sm truncate dark:text-gray-300 max-w-[80%]">{bday.giftIdea || "Sin asignar"}</p>
                                               {bday.giftIdea && isUrl(bday.giftIdea) && (
-                                                  <a href={bday.giftIdea} target="_blank" rel="noreferrer" className="text-[#7C3AED] dark:text-[#A3E635] hover:scale-125 transition-transform">
+                                                  <a href={bday.giftIdea} target="_blank" rel="noreferrer" className="text-[#6A4C93] dark:text-[#48CAE4] hover:scale-125 transition-transform">
                                                       <ExternalLink size={16} />
                                                   </a>
                                               )}
@@ -303,7 +303,7 @@ const ListView: React.FC<ListViewProps> = ({ birthdays, onDelete }) => {
                                   <button 
                                       type="button"
                                       onClick={(e) => handleDeleteClick(e, bday.id)}
-                                      className="w-full bg-black dark:bg-[#7C3AED] text-white py-3 font-black uppercase hover:bg-red-600 dark:hover:bg-red-600 transition-colors flex items-center justify-center gap-2 border-2 border-black dark:border-white shadow-[2px_2px_0px_0px_#7C3AED] dark:shadow-[2px_2px_0px_0px_#ffffff]"
+                                      className="w-full bg-black dark:bg-[#6A4C93] text-white py-3 font-black uppercase hover:bg-red-600 dark:hover:bg-red-600 transition-colors flex items-center justify-center gap-2 border-2 border-black dark:border-white shadow-[2px_2px_0px_0px_#6A4C93] dark:shadow-[2px_2px_0px_0px_#ffffff]"
                                   >
                                       <Trash2 size={18} /> ELIMINAR OBJETIVO
                                   </button>

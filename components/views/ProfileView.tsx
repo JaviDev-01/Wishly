@@ -134,16 +134,16 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
         <div className="mb-4 bg-white dark:bg-[#111] border-2 border-black dark:border-white p-3 shadow-sm">
             <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center gap-2">
-                    <HardDrive size={16} className="text-[#A3E635]" />
+                    <HardDrive size={16} className="text-[#FF7A5A]" />
                     <span className="text-xs font-black uppercase dark:text-white">Uso de Memoria (Optimizado)</span>
                 </div>
-                <span className="text-xs font-mono font-bold text-[#7C3AED]">{storageSize}</span>
+                <span className="text-xs font-mono font-bold text-[#6A4C93]">{storageSize}</span>
             </div>
             {/* Progress Bar Container */}
             <div className="h-4 w-full bg-gray-200 dark:bg-gray-800 border border-black dark:border-gray-600 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20" style={{backgroundImage: 'repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%)', backgroundSize: '4px 4px'}}></div>
                 <div 
-                    className="h-full bg-[#A3E635] transition-all duration-500" 
+                    className="h-full bg-[#FF7A5A] transition-all duration-500" 
                     style={{ width: `${Math.max(storagePercent, 2)}%` }}
                 ></div>
             </div>
@@ -151,9 +151,9 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
 
         {/* Analytics Section */}
         <div className="mb-6 grid grid-cols-2 gap-3">
-            <div className="border-2 border-black dark:border-white p-3 bg-white dark:bg-[#111] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#7C3AED]">
+            <div className="border-2 border-black dark:border-white p-3 bg-white dark:bg-[#111] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#6A4C93]">
                 <div className="flex items-center gap-1 mb-2">
-                    <BarChart2 size={16} className="text-[#7C3AED]" />
+                    <BarChart2 size={16} className="text-[#6A4C93]" />
                     <span className="text-[9px] font-black uppercase dark:text-white">Zodiaco Dominante</span>
                 </div>
                 <div className="text-2xl font-black uppercase leading-none dark:text-white truncate">
@@ -162,15 +162,27 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
                 <div className="text-[10px] font-bold text-gray-500 mt-1">{dominantZodiac.count} Miembros</div>
             </div>
 
-            <div className="border-2 border-black dark:border-white p-3 bg-white dark:bg-[#111] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#7C3AED]">
+            <div className="border-2 border-black dark:border-white p-3 bg-white dark:bg-[#111] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#6A4C93]">
                 <div className="flex items-center gap-1 mb-2">
-                    <Activity size={16} className="text-[#7C3AED]" />
+                    <Activity size={16} className="text-[#6A4C93]" />
                     <span className="text-[9px] font-black uppercase dark:text-white">Edad Media</span>
                 </div>
                 <div className="text-2xl font-black uppercase leading-none dark:text-white">
                     {averageAge > 0 ? averageAge : "--"}
                 </div>
                 <div className="text-[10px] font-bold text-gray-500 mt-1">Años</div>
+            </div>
+            <div className="border-2 border-black dark:border-white p-3 bg-white dark:bg-[#111] shadow-[4px_4px_0px_0px_#000000] dark:shadow-[4px_4px_0px_0px_#6A4C93]">
+                <div className="flex items-center gap-1 mb-2">
+                    <div className="flex flex-wrap gap-3">
+                  <button className="bg-purple-600 text-white px-4 py-2 font-black uppercase text-xs shadow-[3px_3px_0px_0px_#000] active:shadow-none translate-y-0 active:translate-y-1 transition-all">
+                    System Stats
+                  </button>
+                  <button className="bg-orange-500 text-black px-4 py-2 font-black uppercase text-xs shadow-[3px_3px_0px_0px_#000] active:shadow-none translate-y-0 active:translate-y-1 transition-all">
+                    Data Sync
+                  </button>
+                </div>
+                </div>
             </div>
         </div>
 

@@ -123,7 +123,7 @@ const AddView: React.FC<AddViewProps> = ({ onAdd, onCancel }) => {
                                 onClick={() => setCategory(cat)}
                                 className={`px-3 py-2 text-[10px] font-black uppercase border-2 border-black dark:border-white transition-all ${
                                     category === cat 
-                                    ? 'bg-[#A3E635] text-black translate-x-1 translate-y-1 shadow-none' 
+                                    ? 'bg-[#FF7A5A] text-black translate-x-1 translate-y-1 shadow-none' 
                                     : 'bg-white dark:bg-black dark:text-white shadow-[2px_2px_0px_0px_#000] dark:shadow-[2px_2px_0px_0px_#fff] hover:-translate-y-1'
                                 }`}
                             >
@@ -135,8 +135,8 @@ const AddView: React.FC<AddViewProps> = ({ onAdd, onCancel }) => {
 
                 {/* Custom Text Area */}
                 <div className="w-full mb-8">
-                    <label className="block font-black mb-1 text-white text-xs uppercase tracking-widest bg-black dark:bg-[#7C3AED] dark:text-white border-2 border-black dark:border-white w-fit px-3 py-1 transform -rotate-1 shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#ffffff]">
-                        Notas de Archivo
+                    <label className="block font-black mb-1 text-white text-xs uppercase tracking-widest bg-black dark:bg-[#6A4C93] dark:text-white border-2 border-black dark:border-white w-fit px-3 py-1 transform -rotate-1 shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#ffffff]">
+                        Notas Archivadas
                     </label>
                     <div className="relative">
                         <textarea 

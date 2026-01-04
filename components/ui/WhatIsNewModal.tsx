@@ -10,10 +10,10 @@ interface WhatIsNewModalProps {
 const WhatIsNewModal: React.FC<WhatIsNewModalProps> = ({ version, onClose }) => {
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white dark:bg-[#111] border-4 border-black dark:border-white w-full max-w-sm shadow-[8px_8px_0px_0px_#A3E635] overflow-hidden animate-pop">
+      <div className="bg-white dark:bg-[#111] border-4 border-black dark:border-white w-full max-w-sm shadow-[8px_8px_0px_0px_#48CAE4] overflow-hidden animate-pop">
         
         {/* Header */}
-        <div className="bg-[#7C3AED] p-4 border-b-4 border-black flex justify-between items-center">
+        <div className="bg-[#6A4C93] p-4 border-b-4 border-black flex justify-between items-center">
           <h2 className="text-xl font-black text-white uppercase tracking-tighter italic">¡APP ACTUALIZADA!</h2>
           <button onClick={onClose} className="text-white hover:rotate-90 transition-transform">
             <X size={24} />
@@ -32,11 +32,11 @@ const WhatIsNewModal: React.FC<WhatIsNewModalProps> = ({ version, onClose }) => 
 
           <div className="space-y-3">
              <div className="flex gap-3">
-                <div className="bg-[#A3E635] p-1 h-fit border border-black shadow-[2px_2px_0px_0px_#000]">
+                <div className="bg-[#FF7A5A] p-1 h-fit border border-black shadow-[2px_2px_0px_0px_#000]">
                     <ShieldCheck size={18} />
                 </div>
                 <p className="text-xs font-bold dark:text-white leading-tight">
-                   <span className="text-[#7C3AED]">FIX:</span> Sistema de rollback desactivado. Las actualizaciones ahora son persistentes.
+                   <span className="text-[#6A4C93]">FIX:</span> Sistema de rollback desactivado. Las actualizaciones ahora son persistentes.
                 </p>
              </div>
 
@@ -45,16 +45,16 @@ const WhatIsNewModal: React.FC<WhatIsNewModalProps> = ({ version, onClose }) => 
                     <Sparkles size={18} />
                 </div>
                 <p className="text-xs font-bold dark:text-white leading-tight">
-                   <span className="text-[#7C3AED]">NEW:</span> Soporte para Safe Areas. El diseño ya no choca con las notificaciones.
+                   <span className="text-[#6A4C93]">NEW:</span> Soporte para Safe Areas. El diseño ya no choca con las notificaciones.
                 </p>
              </div>
 
              <div className="flex gap-3">
-                <div className="bg-[#A3E635] p-1 h-fit border border-black shadow-[2px_2px_0px_0px_#000]">
+                <div className="bg-[#48CAE4] p-1 h-fit border border-black shadow-[2px_2px_0px_0px_#000]">
                     <Zap size={18} />
                 </div>
                 <p className="text-xs font-bold dark:text-white leading-tight">
-                   <span className="text-[#7C3AED]">UI:</span> Aviso visual de actualización y novedades del sistema.
+                   <span className="text-[#6A4C93]">UI:</span> Aviso visual de actualización y novedades del sistema.
                 </p>
              </div>
           </div>

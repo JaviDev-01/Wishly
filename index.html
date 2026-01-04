@@ -14,8 +14,9 @@
         theme: {
           extend: {
             colors: {
-              primary: "#7C3AED", // Violeta Eléctrico
-              accent: "#A3E635", // Lima Ácido
+              primary: "#6A4C93", // Morado
+              accent: "#FF7A5A",  // Coral
+              secondary: "#48CAE4", // Azul claro
             },
           },
         },
@@ -31,10 +32,11 @@
     <style>
       :root {
         --bg-color: #f4f4f5;
-        --grid-line: rgba(124, 58, 237, 0.08); /* Violet tinted grid */
+        --grid-line: rgba(106, 76, 147, 0.1); /* Morado tinted grid */
         --text-main: #000000;
-        --color-primary: #7c3aed;
-        --color-accent: #a3e635;
+        --color-primary: #6a4c93;
+        --color-accent: #ff7a5a;
+        --color-secondary: #48cae4;
       }
 
       html.dark {
@@ -163,15 +165,15 @@
       @keyframes partyPulse {
         0% {
           transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6);
+          box-shadow: 0 0 0 0 rgba(106, 76, 147, 0.6);
         }
         50% {
           transform: scale(1.02);
-          box-shadow: 0 0 20px 10px rgba(124, 58, 237, 0);
+          box-shadow: 0 0 20px 10px rgba(106, 76, 147, 0);
         }
         100% {
           transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+          box-shadow: 0 0 0 0 rgba(106, 76, 147, 0);
         }
       }
 
