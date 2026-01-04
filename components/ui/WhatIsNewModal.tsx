@@ -45,7 +45,7 @@ const WhatIsNewModal: React.FC<WhatIsNewModalProps> = ({ version, onClose }) => 
                     <Sparkles size={18} />
                 </div>
                 <p className="text-xs font-bold dark:text-white leading-tight">
-                   <span className="text-[#6A4C93]">NEW:</span> Soporte para Safe Areas. El diseño ya no choca con las notificaciones.
+                   <span className="text-[#6A4C93]">NEW:</span> Añadimos dos funcionalidades nuevas: GiftLab y Filtración de cumpleanos por asiganción de rol.
                 </p>
              </div>
 
@@ -54,7 +54,7 @@ const WhatIsNewModal: React.FC<WhatIsNewModalProps> = ({ version, onClose }) => 
                     <Zap size={18} />
                 </div>
                 <p className="text-xs font-bold dark:text-white leading-tight">
-                   <span className="text-[#6A4C93]">UI:</span> Aviso visual de actualización y novedades del sistema.
+                   <span className="text-[#6A4C93]">UI:</span> Nuevos colores y mejoras en la experiencia del usuario.
                 </p>
              </div>
           </div>
