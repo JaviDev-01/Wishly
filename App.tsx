@@ -27,13 +27,18 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
+  const [showUpdateToast, setShowUpdateToast] = useState(false);
 
   // Load data and theme on mount
   useEffect(() => {
     const initApp = async () => {
         await NotificationService.init();
+        
         // Check for OTA updates
-        OtaService.checkForUpdates();
+        const hasUpdate = await OtaService.checkForUpdates();
+        if (hasUpdate) {
+            setShowUpdateToast(true);
+        }
         
         const storedUser = localStorage.getItem(STORAGE_KEY_USER);
         const storedUserDOB = localStorage.getItem(STORAGE_KEY_USER_DOB);
@@ -184,6 +189,24 @@ const App: React.FC = () => {
           )}
         </div>
       </main>
+
+      {/* Update Toast */}
+      {showUpdateToast && (
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[100] w-[90%] max-w-sm animate-pop">
+          <div className="bg-black dark:bg-white text-white dark:text-black p-4 rounded-xl shadow-lg border-2 border-[#A3E635] flex items-center justify-between gap-3">
+             <div className="flex flex-col">
+                <span className="font-bold text-sm uppercase tracking-wider">Actualización Lista</span>
+                <span className="text-xs opacity-80">Nueva versión disponible 🚀</span>
+             </div>
+             <button 
+               onClick={() => OtaService.applyUpdate()}
+               className="bg-[#A3E635] text-black font-bold text-xs px-3 py-2 rounded-lg hover:brightness-110 active:scale-95 transition-all uppercase tracking-wide"
+             >
+               Actualizar
+             </button>
+          </div>
+        </div>
+      )}
 
       {/* Floating Bottom Navigation */}
       <div className="absolute bottom-6 left-0 w-full z-50 pointer-events-none flex justify-center">

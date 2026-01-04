@@ -1,33 +1,32 @@
 import { CapacitorUpdater } from '@capgo/capacitor-updater';
 
 export const OtaService = {
-  async checkForUpdates() {
+  async checkForUpdates(): Promise<boolean> {
     try {
       console.log('[OTA] Checking for updates...');
-      // alert('Buscando actualización...'); // Debug
-
       const result = await CapacitorUpdater.download({
         url: 'https://github.com/JaviDev-01/Wishly/releases/latest/download/update.zip',
-        version: '' // Empty version allows the plugin to decide/generate one based on the zip content
+        version: '' 
       });
 
       console.log('[OTA] Download result:', result);
 
       if (result.version) {
-        // alert(`Actualización encontrada: ${result.version}`); // Debug
         await CapacitorUpdater.set(result);
-        
-        // Force reload to apply the new version immediately
-        // alert('Instalando actualización...'); // Debug
-        // window.location.reload(); 
-        // OR better:
-        await CapacitorUpdater.reload();
-      } else {
-        // alert('No se encontró versión nueva en el ZIP.');
+        return true; // Update ready
       }
+      return false;
     } catch (err) {
       console.error('[OTA] Error:', err);
-      // alert(`Error OTA: ${JSON.stringify(err)}`);
+      return false;
+    }
+  },
+
+  async applyUpdate() {
+    try {
+      await CapacitorUpdater.reload();
+    } catch (err) {
+      console.error('[OTA] Failed to reload:', err);
     }
   }
 };
