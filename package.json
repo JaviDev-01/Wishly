@@ -1,0 +1,34 @@
+{
+  "name": "wishly",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/app": "^6.0.3",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^6.2.1",
+    "@capacitor/haptics": "^6.0.3",
+    "@capacitor/keyboard": "^6.0.4",
+    "@capacitor/local-notifications": "^6.1.3",
+    "@capacitor/push-notifications": "^6.0.5",
+    "@capacitor/status-bar": "^6.0.3",
+    "@capgo/capacitor-updater": "^8.41.3",
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "5.9.3",
+    "vite": "^6.2.0"
+  }
+}

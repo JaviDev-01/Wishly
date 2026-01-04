@@ -1,0 +1,25 @@
+
+[Incubating] Problems report is available at: file:///E:/Javi/Programacion/wishly/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'E:\Javi\Programacion\wishly\android\app\build.gradle' line: 39
+
+* What went wrong:
+Could not compile build file 'E:\Javi\Programacion\wishly\android\app\build.gradle'.
+> startup failed:
+  build file 'E:\Javi\Programacion\wishly\android\app\build.gradle': 39: Unexpected input: '{\n        release {\n            signingConfig signingConfigs.release\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\n        }\n    }\n}' @ line 39, column 1.
+     }
+     ^
+  
+  1 error
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
