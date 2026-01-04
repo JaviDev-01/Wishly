@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { NeoButton, NeoCard } from '../ui/NeoComponents';
-import { LogOut, Trash, Database, Moon, Sun, BarChart2, Activity, Download, Upload, HardDrive, Calendar, ShieldCheck } from 'lucide-react';
+import { LogOut, Trash, Database, Moon, Sun, BarChart2, Activity, Download, Upload, HardDrive, Calendar, ShieldCheck, Sparkles } from 'lucide-react';
 import { Birthday } from '../../types';
 import { getDominantZodiac, getAverageAge, compressBirthdays, decompressBirthdays } from '../../utils';
+import PrivacyModal from '../ui/PrivacyModal';
+import WhatIsNewModal from '../ui/WhatIsNewModal';
 
 interface ProfileViewProps {
   userName: string;
@@ -22,6 +24,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
   const averageAge = getAverageAge(birthdays);
   const [storageSize, setStorageSize] = useState<string>("0 B");
   const [storagePercent, setStoragePercent] = useState<number>(0);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showNews, setShowNews] = useState(false);
 
   // Calculate storage usage
   useEffect(() => {
@@ -199,32 +203,44 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
             </NeoButton>
         </div>
 
-        {/* PRIVACY SECTION - NEW */}
-        <div className="mt-8 mb-4 border-2 border-black dark:border-white p-4 bg-gray-100 dark:bg-gray-900 relative">
-            <div className="absolute -top-3 left-3 bg-[#7C3AED] text-white px-2 py-0.5 text-[10px] font-black uppercase tracking-widest border border-black transform -rotate-1 shadow-[2px_2px_0px_0px_#000000]">
-                Privacidad & Seguridad
-            </div>
-            <div className="flex gap-4 pt-2">
-                 <div className="bg-black dark:bg-white p-2 h-fit border border-black dark:border-white shadow-[3px_3px_0px_0px_#A3E635]">
-                    <ShieldCheck size={24} className="text-[#A3E635] dark:text-black flex-shrink-0" />
-                 </div>
-                 <div className="text-xs dark:text-white">
-                    <p className="font-bold uppercase mb-2 text-[#7C3AED] dark:text-[#A3E635]">Tus datos son tuyos.</p>
-                    <p className="opacity-80 leading-relaxed font-medium mb-2">
-                        Esta aplicación funciona <strong>100% Offline</strong> (Local-First). La información de los cumpleaños se guarda exclusivamente en el almacenamiento local de tu dispositivo (LocalStorage).
-                    </p>
-                    <p className="opacity-70 leading-relaxed font-medium">
-                        Nosotros no tenemos servidores, no rastreamos tu actividad y no podemos ver a quién felicitas. Lo que pasa en tu móvil, se queda en tu móvil.
-                    </p>
-                 </div>
-            </div>
+        {/* Info Section Buttons */}
+        <div className="mt-8 space-y-3">
+             <button 
+                onClick={() => setShowPrivacy(true)}
+                className="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+             >
+                <div className="flex items-center gap-3">
+                    <ShieldCheck className="text-[#a3e635]" size={20} />
+                    <span className="text-xs font-black uppercase dark:text-white">Privacidad y Seguridad</span>
+                </div>
+                <div className="text-[10px] font-bold opacity-50 dark:text-white">VER PROTOCOLO</div>
+             </button>
+
+             <button 
+                onClick={() => setShowNews(true)}
+                className="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+             >
+                <div className="flex items-center gap-3">
+                    <Sparkles className="text-[#7c3aed]" size={20} />
+                    <span className="text-xs font-black uppercase dark:text-white">Novedades del Sistema</span>
+                </div>
+                <div className="text-[10px] font-bold opacity-50 dark:text-white">¿QUÉ HAY DE NUEVO?</div>
+             </button>
         </div>
 
-        <div className="mt-auto text-center opacity-30 text-xs font-black uppercase tracking-widest dark:text-white pt-2">
+        <div className="mt-auto text-center opacity-30 text-xs font-black uppercase tracking-widest dark:text-white pt-8">
             <p>Wishly System v{currentAppVersion || '3.2'}</p>
             <p>Secure Local Core</p>
         </div>
       </div>
+
+      {showPrivacy && <PrivacyModal onClose={() => setShowPrivacy(false)} />}
+      {showNews && (
+        <WhatIsNewModal 
+          version={currentAppVersion || '0.0.5'} 
+          onClose={() => setShowNews(false)} 
+        />
+      )}
     </div>
   );
 };
