@@ -7,6 +7,8 @@ import ProfileView from './components/views/ProfileView';
 import { NeoNavItem } from './components/ui/NeoComponents';
 import { Birthday, Tab } from './types';
 import { Home, PlusSquare, List, User } from 'lucide-react';
+import WhatIsNewModal from './components/ui/WhatIsNewModal';
+import { App as CapApp } from '@capacitor/app';
 import { compressBirthdays, decompressBirthdays, encryptData, decryptData, sortBirthdays } from './utils';
 import { NotificationService } from './notifications';
 import { OtaService } from './ota';
@@ -29,6 +31,8 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
   const [showUpdateToast, setShowUpdateToast] = useState(false);
+  const [showNewsModal, setShowNewsModal] = useState(false);
+  const [currentAppVersion, setCurrentAppVersion] = useState('');
 
   // Load data and theme on mount
   useEffect(() => {
@@ -79,6 +83,26 @@ const App: React.FC = () => {
         
         if (storedTheme === 'dark') {
             setIsDark(true);
+        }
+        
+        // --- Version & News Logic ---
+        try {
+            const info = await CapApp.getInfo();
+            const currentVersion = info.version;
+            setCurrentAppVersion(currentVersion);
+
+            const lastSeenVersion = localStorage.getItem('cb_last_version');
+            
+            // If the version is different but we already had a version stored, show news
+            // (Unless it's the first time the app ever opens, where lastSeenVersion is null)
+            if (lastSeenVersion && lastSeenVersion !== currentVersion) {
+                setShowNewsModal(true);
+            }
+            
+            // Update the stored version
+            localStorage.setItem('cb_last_version', currentVersion);
+        } catch (e) {
+            console.error("Error getting app info", e);
         }
         
         setLoading(false);
@@ -155,7 +179,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto h-[100dvh] relative shadow-2xl overflow-hidden flex flex-col border-x-2 border-black dark:border-white transition-colors duration-300">
+    <div className="max-w-md mx-auto h-[100dvh] relative shadow-2xl overflow-hidden flex flex-col border-x-2 border-black dark:border-white transition-colors duration-300 pt-safe">
       {/* 
         CRITICAL FIX FOR SCROLLING:
         - main needs overflow-hidden to prevent double scrollbars.
@@ -194,6 +218,7 @@ const App: React.FC = () => {
               toggleTheme={toggleTheme}
               isDark={isDark}
               birthdays={birthdays}
+              currentAppVersion={currentAppVersion}
             />
           )}
         </div>
@@ -246,6 +271,13 @@ const App: React.FC = () => {
             />
         </nav>
       </div>
+
+      {showNewsModal && (
+        <WhatIsNewModal 
+          version={currentAppVersion} 
+          onClose={() => setShowNewsModal(false)} 
+        />
+      )}
     </div>
   );
 };

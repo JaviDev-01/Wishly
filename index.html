@@ -2,55 +2,64 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>Wishly</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: 'class',
+        darkMode: "class",
         theme: {
-            extend: {
-                colors: {
-                    primary: '#7C3AED', // Violeta Eléctrico
-                    accent: '#A3E635', // Lima Ácido
-                }
-            }
-        }
-      }
+          extend: {
+            colors: {
+              primary: "#7C3AED", // Violeta Eléctrico
+              accent: "#A3E635", // Lima Ácido
+            },
+          },
+        },
+      };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --bg-color: #f4f4f5; 
+        --bg-color: #f4f4f5;
         --grid-line: rgba(124, 58, 237, 0.08); /* Violet tinted grid */
         --text-main: #000000;
-        --color-primary: #7C3AED;
-        --color-accent: #A3E635;
+        --color-primary: #7c3aed;
+        --color-accent: #a3e635;
       }
 
       html.dark {
-        --bg-color: #09090b; 
+        --bg-color: #09090b;
         --grid-line: rgba(255, 255, 255, 0.05);
         --text-main: #ffffff;
       }
 
       body {
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         background-color: var(--bg-color);
         color: var(--text-main);
         transition: background-color 0.4s ease, color 0.4s ease;
-        
+
         /* Technical Grid Pattern */
-        background-image: 
-          linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        background-image: linear-gradient(
+            to right,
+            var(--grid-line) 1px,
+            transparent 1px
+          ),
           linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
         background-size: 40px 40px;
         background-position: center top;
-        
-        overflow: hidden; 
+
+        overflow: hidden;
       }
 
       /* Selection Color (Cyber Style) */
@@ -58,7 +67,7 @@
         background: var(--color-primary);
         color: #fff;
       }
-      
+
       .dark ::selection {
         background: var(--color-accent);
         color: #000;
@@ -74,21 +83,39 @@
       }
 
       /* --- HYPER ANIMATIONS --- */
-      
+
       @keyframes popElastic {
-        0% { opacity: 0; transform: scale(0.9) translateY(30px); filter: blur(4px); }
-        60% { opacity: 1; transform: scale(1.02) translateY(-5px); filter: blur(0); }
-        100% { transform: scale(1) translateY(0); }
+        0% {
+          opacity: 0;
+          transform: scale(0.9) translateY(30px);
+          filter: blur(4px);
+        }
+        60% {
+          opacity: 1;
+          transform: scale(1.02) translateY(-5px);
+          filter: blur(0);
+        }
+        100% {
+          transform: scale(1) translateY(0);
+        }
       }
-      
+
       .animate-pop {
         animation: popElastic 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
 
       /* Page Transitions */
       @keyframes fadeSlideUp {
-        0% { opacity: 0; transform: translateY(15px); filter: blur(2px); }
-        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        0% {
+          opacity: 0;
+          transform: translateY(15px);
+          filter: blur(2px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
       }
 
       .animate-fade-in-up {
@@ -96,8 +123,12 @@
       }
 
       @keyframes marquee {
-        0% { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
       }
 
       .animate-marquee {
@@ -106,9 +137,21 @@
       }
 
       @keyframes slideYeet {
-        0% { transform: translateX(0); border-color: black; }
-        20% { transform: translateX(-100px) rotate(-5deg); border-color: var(--color-primary); }
-        100% { transform: translateX(120%) rotate(10deg); opacity: 0; border-color: var(--color-primary); background-color: var(--color-primary); color: white; }
+        0% {
+          transform: translateX(0);
+          border-color: black;
+        }
+        20% {
+          transform: translateX(-100px) rotate(-5deg);
+          border-color: var(--color-primary);
+        }
+        100% {
+          transform: translateX(120%) rotate(10deg);
+          opacity: 0;
+          border-color: var(--color-primary);
+          background-color: var(--color-primary);
+          color: white;
+        }
       }
 
       .animate-yeet {
@@ -118,9 +161,18 @@
 
       /* Party Pulse for Birthday Day */
       @keyframes partyPulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6); }
-        50% { transform: scale(1.02); box-shadow: 0 0 20px 10px rgba(124, 58, 237, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 0 20px 10px rgba(124, 58, 237, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+        }
       }
 
       .animate-party {
@@ -130,27 +182,43 @@
 
       /* Glitch effect */
       @keyframes hover-shake {
-        0% { transform: translate(0, 0); }
-        25% { transform: translate(1px, 1px); }
-        50% { transform: translate(-1px, -1px); }
-        75% { transform: translate(1px, -1px); }
-        100% { transform: translate(0, 0); }
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(1px, 1px);
+        }
+        50% {
+          transform: translate(-1px, -1px);
+        }
+        75% {
+          transform: translate(1px, -1px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
       }
-      
+
       .hover-glitch:hover {
         animation: hover-shake 0.2s linear;
         box-shadow: 6px 6px 0px 0px var(--color-primary) !important;
       }
-      
+
       .hover-glitch-lime:hover {
         animation: hover-shake 0.2s linear;
         box-shadow: 6px 6px 0px 0px var(--color-accent) !important;
       }
 
-      .stagger-1 { animation-delay: 0.05s; }
-      .stagger-2 { animation-delay: 0.1s; }
-      .stagger-3 { animation-delay: 0.15s; }
-      
+      .stagger-1 {
+        animation-delay: 0.05s;
+      }
+      .stagger-2 {
+        animation-delay: 0.1s;
+      }
+      .stagger-3 {
+        animation-delay: 0.15s;
+      }
+
       /* Smooth transitions for all colors */
       * {
         transition-property: background-color, border-color, color, fill, stroke;
@@ -158,21 +226,28 @@
         transition-duration: 300ms;
       }
 
+      /* Mobile Safe Areas */
+      .pt-safe {
+        padding-top: env(safe-area-inset-top);
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.2.3/",
+          "react": "https://esm.sh/react@^19.2.3",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+          "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

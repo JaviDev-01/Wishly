@@ -13,9 +13,10 @@ interface ProfileViewProps {
   toggleTheme: () => void;
   isDark: boolean;
   birthdays?: Birthday[]; 
+  currentAppVersion?: string;
 }
 
-const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onLogout, onClearData, toggleTheme, isDark, birthdays = [] }) => {
+const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onLogout, onClearData, toggleTheme, isDark, birthdays = [], currentAppVersion }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dominantZodiac = getDominantZodiac(birthdays);
   const averageAge = getAverageAge(birthdays);
@@ -220,7 +221,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
         </div>
 
         <div className="mt-auto text-center opacity-30 text-xs font-black uppercase tracking-widest dark:text-white pt-2">
-            <p>Wishly System v3.2</p>
+            <p>Wishly System v{currentAppVersion || '3.2'}</p>
             <p>Secure Local Core</p>
         </div>
       </div>
