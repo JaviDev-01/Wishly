@@ -220,7 +220,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userName, userDOB, count, onL
         </div>
 
         <div className="mt-auto text-center opacity-30 text-xs font-black uppercase tracking-widest dark:text-white pt-2">
-            <p>Wishly System v4.1</p>
+            <p>Wishly System v3.1</p>
             <p>Secure Local Core</p>
         </div>
       </div>
