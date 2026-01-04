@@ -3,27 +3,31 @@ import { CapacitorUpdater } from '@capgo/capacitor-updater';
 export const OtaService = {
   async checkForUpdates() {
     try {
-      console.log('[OTA] Checking for updates from GitHub releases...');
-      // Direct download from the 'latest' release tag. 
-      // The plugin handles version checking internally by comparing the zip content or metadata if provided.
-      // However, for this simple 'download' method, it generally just downloads. 
-      // The robust way in the tutorial suggests download -> set.
+      console.log('[OTA] Checking for updates...');
+      // alert('Buscando actualización...'); // Debug
+
       const result = await CapacitorUpdater.download({
-          url: 'https://github.com/JaviDev-01/Wishly/releases/latest/download/update.zip',
-          version: ''
+        url: 'https://github.com/JaviDev-01/Wishly/releases/latest/download/update.zip',
+        version: '' // Empty version allows the plugin to decide/generate one based on the zip content
       });
 
+      console.log('[OTA] Download result:', result);
+
       if (result.version) {
-        console.log(`[OTA] Update downloaded: ${result.version}`);
+        // alert(`Actualización encontrada: ${result.version}`); // Debug
         await CapacitorUpdater.set(result);
         
-        // Optional: Reload to apply immediately. 
-        // Without this, it applies on next app restart.
-        // await CapacitorUpdater.reload(); 
-        console.log('[OTA] Update set as active.');
+        // Force reload to apply the new version immediately
+        // alert('Instalando actualización...'); // Debug
+        // window.location.reload(); 
+        // OR better:
+        await CapacitorUpdater.reload();
+      } else {
+        // alert('No se encontró versión nueva en el ZIP.');
       }
     } catch (err) {
-      console.log('[OTA] No update available or check failed', err);
+      console.error('[OTA] Error:', err);
+      // alert(`Error OTA: ${JSON.stringify(err)}`);
     }
   }
 };
